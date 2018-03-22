@@ -12,7 +12,8 @@ import android.widget.SeekBar;
 public class MainActivity extends Activity{
     private MediaPlayer mp;
     private SeekBar seekBar;
-    private Handler mHandler;
+    private Handler mHandler = new Handler();
+    private boolean played = false;
     private Runnable mRunnable;
     int playstopBtns[] = {R.id.castle, R.id.pause, R.id.stop};
 
@@ -25,7 +26,6 @@ public class MainActivity extends Activity{
         setContentView(R.layout.activity_main);
 
         seekBar = findViewById(R.id.seekBar);
-        mHandler = new Handler();
 
         for (int btns : playstopBtns) {
             Button btn = findViewById(btns);
@@ -50,6 +50,7 @@ public class MainActivity extends Activity{
 
             }
         });
+
     }
 
     View.OnClickListener clickListener = new View.OnClickListener() {
@@ -65,6 +66,7 @@ public class MainActivity extends Activity{
                 default :
                     Stop();
             }
+
         }
 
     };
@@ -72,24 +74,30 @@ public class MainActivity extends Activity{
 
     private void Play(int selNo){
 
+
         if(mp == null){
             mp = MediaPlayer.create(MainActivity.this, resMp3[selNo]);
+
         }
         if(!mp.isPlaying()){
+
             mp.start();
             initializeSeekBar();
         }
     }
 
     private void Stop(){
+
         if(mp!=null){
             mp.stop();
             mp = null;
         }
+
     }
     private void Pause(){
         if(mp != null){
             mp.pause();
+
         }
     }
 
