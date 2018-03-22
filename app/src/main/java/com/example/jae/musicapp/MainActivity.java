@@ -13,11 +13,9 @@ public class MainActivity extends Activity{
     private MediaPlayer mp;
     private SeekBar seekBar;
     private Handler mHandler = new Handler();
-    private boolean played = false;
     private Runnable mRunnable;
-    int playstopBtns[] = {R.id.castle, R.id.pause, R.id.stop};
-
-    int resMp3[] = {R.raw.castleon_the_hill};
+    private int playstopBtns[] = {R.id.castle, R.id.pause, R.id.stop};
+    private int resMp3[] = {R.raw.castleon_the_hill};
 
 
     @Override
@@ -41,14 +39,10 @@ public class MainActivity extends Activity{
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
     }
@@ -66,7 +60,6 @@ public class MainActivity extends Activity{
                 default :
                     Stop();
             }
-
         }
 
     };
@@ -74,30 +67,24 @@ public class MainActivity extends Activity{
 
     private void Play(int selNo){
 
-
         if(mp == null){
             mp = MediaPlayer.create(MainActivity.this, resMp3[selNo]);
-
         }
         if(!mp.isPlaying()){
-
             mp.start();
             initializeSeekBar();
         }
     }
 
     private void Stop(){
-
         if(mp!=null){
             mp.stop();
             mp = null;
         }
-
     }
     private void Pause(){
         if(mp != null){
             mp.pause();
-
         }
     }
 
